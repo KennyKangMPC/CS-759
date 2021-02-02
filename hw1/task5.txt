@@ -1,0 +1,26 @@
+a) In what directory does a Slurm job on Euler begin execution? You may run some jobs in
+different directories to check this.
+
+SLURM_SUBMIT_DIR
+
+b) Explain what SLURM JOB ID is in the environment of a running Slurm job.
+
+This is the ID of the job allocation.
+
+c) How would you track the status of job(s) run by yourself? Assume that the job(s) have not
+been completed yet.
+
+Use squeue command. See page https://slurm.schedmd.com/squeue.html for more detail and example:
+https://ubccr.freshdesk.com/support/solutions/articles/5000686861-how-do-i-check-the-status-of-my-job-s-
+
+d) How would you cancel a job submitted by yourself? Assume that the job is still in the queue.
+
+Use scancel https://slurm.schedmd.com/scancel.html#:~:text=To%20cancel%20a%20job%2C%20invoke,not%20terminated%20send%20a%20SIGKILL.
+
+e) Explain what the following script header line specifies: #SBATCH --gres=gpu:1
+
+Allocate a gpu
+
+f) (Optional) Explain what the following script header line specifies: #SBATCH --array=0-9
+
+Submit a job array with index values between 0 and 9
