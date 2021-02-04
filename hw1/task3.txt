@@ -1,0 +1,33 @@
+(a) Are there any modules loaded (module list) when you log in on Euler ?
+
+No
+
+(b) What version (version number) of gcc is available to you without loading any modules?
+
+[kangqi@euler ~]$ gcc --version
+gcc (GCC) 8.3.1 20191121 (Red Hat 8.3.1-5)
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+(c) List all cuda modules available on Euler.
+
+[kangqi@euler ~]$ module avail cuda
+----------------------------------------------------------------------------- /usr/local/share/modulefiles ------------------------------------------------------------------------------
+cuda/7  cuda/7.5  cuda/8  cuda/8.0  cuda/9  cuda/9.0  cuda/9.1  cuda/10  cuda/10.0  cuda/10.1  cuda/10.2  cuda/11  cuda/11.0  cuda/11.1  cuda/11.2 
+
+(d) List one other piece of software that has a module on Euler and write one sentence about what it does.
+
+[kangqi@euler ~]$ module avail julia
+----------------------------------------------------------------------------- /usr/local/share/modulefiles ------------------------------------------------------------------------------
+julia/0.6.4  julia/1.0.1  julia/1.4.0 
+
+Julia is a programming language
+
+[kangqi@euler ~]$ module avail opencv
+----------------------------------------------------------------------------- /usr/local/share/modulefiles ------------------------------------------------------------------------------
+opencv/3.3.1
+
+opencv is a open source computer vision software
+
+See details in https://wacc.wisc.edu/euler/software/2018/11/30/Modules-On-Euler.html
