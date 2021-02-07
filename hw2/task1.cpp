@@ -18,9 +18,13 @@ int main(int argc, char *argv[]){
 	}
 	
 	auto start = high_resolution_clock::now();
-	
+	scan(arr, output, n);
 	auto stop = high_resolution_clock::now();
 	
+	auto duration = duration_cast<milliseconds>(stop - start);
+	cout << "Time taken by scan function: " << duration.count() << " milliseconds" << endl;
+	cout << "First element in output is " << output[0] << endl;
+	cout << "Last element in output is " << output[n-1] << endl;
 	free(arr);
 	free(output);
 }
