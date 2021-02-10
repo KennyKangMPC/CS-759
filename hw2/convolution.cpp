@@ -12,7 +12,7 @@ void convolve(const float *image, float *output, std::size_t n, const float *mas
 			output[x * n + y] = 0; // initialize value to be 0
 			for (std::size_t i = 0; i < m - 1; i++) {
 				for (std::size_t j = 0; j < m - 1; j++) {
-					output[x * n + y] += mask[i * m + j] * getfval(image, x + i - (m-1)/2, y + j - (m-1)/2, n);
+					output[x * n + y] += mask[i * m + j] * getfval(image, x + i - (m-1)/2, y + j - (m-1)/2, n); //TODO: Check if I need to 
 				}
 			}
 		}
