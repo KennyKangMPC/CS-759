@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
 	float *output = (float*)malloc(n * sizeof(float));
 	
 	for (size_t i = 0; i < n; i++) {
-		arr[i] = 2 * ((float) rand()) / RAND_MAX - 1;
+		arr[i] = 2 * ((float) rand()) / RAND_MAX - 1; // just noticed that this is not recommended
 	}
 	
 	auto start = high_resolution_clock::now();
