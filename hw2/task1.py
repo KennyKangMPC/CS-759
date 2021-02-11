@@ -16,10 +16,11 @@ with open("task1.out") as f:
 
 with PdfPages("task1.pdf") as pdf:
     plt.plot(xticks, times, "o")
-    for x, y in zip(xticks, times):
-        if y > 100:
-            plt.text(x, y, y)
-    plt.xlabel("Array length (2^x)")
+#    for x, y in zip(xticks, times):
+#        if y > 100:
+#            plt.text(x, y, y)
+    plt.xlabel("Array Size (2^x)")
     plt.ylabel("Time (milliseconds)")
+    plt.title("Scaling Analysis Plot")
     plt.xticks(xticks)
     pdf.savefig()
