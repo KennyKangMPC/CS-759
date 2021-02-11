@@ -14,7 +14,7 @@ struct squashedMatrix {//no need this for homework but I wanna use this as a pra
 	size_t height; // number of rows in matrix
 	size_t width; // number of columns in matrix
 	float *pMatVal;
-}
+};
 
 int main(int argc, char *argv[]){
 	size_t n = atoi(argv[1]);
@@ -41,16 +41,16 @@ int main(int argc, char *argv[]){
 	mask.pMatVal = (float*)malloc(mask.height * mask.width * sizeof(float));
 		
 	//initialize image with random float value from -10.0 to 10.0
-	for (int i = 0; i < image.height; i++) {
-		for (int j = 0; j < image.width; j++) {
+	for (size_t i = 0; i < image.height; i++) {
+		for (size_t j = 0; j < image.width; j++) {
 			image.pMatVal[i * image.width + j] = distIm(generator);
 		}
 	}
 	
 	//initialize mask with random float value from -1.0 to 1.0
-	for (int i = 0; i < mask.height; i++) {
-		for (int j = 0; j < mask.width; j++) {
-			image.pMatVal[i * image.width + j] = distMa(generator);
+	for (size_t i = 0; i < mask.height; i++) {
+		for (size_t j = 0; j < mask.width; j++) {
+			mask.pMatVal[i * mask.width + j] = distMa(generator);
 		}
 	}
 	
@@ -60,6 +60,30 @@ int main(int argc, char *argv[]){
   	auto start = high_resolution_clock::now();
   	convolve(image.pMatVal, output, n, mask.pMatVal, m);
   	auto end = high_resolution_clock::now();
+	
+	//print out image
+//	for (size_t i = 0; i < n; i++) {
+//		for (size_t j = 0; j < n; j++) {
+//			cout << image.pMatVal[i * n + j] << "\t"; // print out in 2D format
+//		}
+//		cout << endl;
+//	}
+	
+	//print out mask
+//	for (size_t i = 0; i < m; i++) {
+//		for (size_t j = 0; j < m; j++) {
+//			cout << mask.pMatVal[i * m + j] << "\t"; // print out in 2D format
+//		}
+//		cout << endl;
+//	}
+	
+	//print out output
+//	for (size_t i = 0; i < n; i++) {
+//		for (size_t j = 0; j < n; j++) {
+//			cout << output[i * n + j] << "\t"; // print out in 2D format
+//		}
+//		cout << endl;
+//	}
 	
 	auto duration_sec = duration_cast<duration<double, std::milli>>(end - start);
 	cout << "Time taken by scan function: " << duration_sec.count() << " milliseconds" << endl;
