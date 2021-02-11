@@ -1,0 +1,19 @@
+This file stores the answer for task 3, part(d)
+The output of the exectuable is:
+1024
+4406.07
+11.3362
+775.217
+11.3362
+9244.2
+11.3362
+2866.51
+11.3362
+
+Among mmul1, mmul2, mmul3, we can tell from the output that mmul2 speed is about 6 times and 11 times
+faster than mmul1 and mmul3. This is due to the better locality which allows the caches to give a 
+better performance. mmul4 and mmul1 has the same operations but the former is faster than the latter.
+I think this is also due to the memory-cache efficiency. Because for vector, a single cache line could
+fit more entries therefore more iteractions can be continued in cache before grabing next data from 
+RAM. Although the bit access for array is faster but I think the effect due to fit more data in cache line 
+is stronger. 

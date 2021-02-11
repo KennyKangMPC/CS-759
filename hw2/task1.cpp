@@ -3,17 +3,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <chrono>
+#include <random>
 // I searched how to do timing from timing.md
 using namespace std;
 using namespace chrono;
 
 int main(int argc, char *argv[]){
+	// set up random value generator for both matrix
+	random_device entropy_source;
+	mt19937_64 generator(entropy_source()); 
+	const float min = -1.0, max = 1.0; // The range for the random number generator is -1.0 to 1.0
+	// there are tons of oter distributino that could be found from https://en.cppreference.com/w/cpp/header/random
+	uniform_real_distribution<float> dist(min, max);
+	
 	size_t n = atol(argv[1]);
 	float *arr = (float*)malloc(n * sizeof(float));
 	float *output = (float*)malloc(n * sizeof(float));
 	
 	for (size_t i = 0; i < n; i++) {
-		arr[i] = 2 * ((float) rand()) / RAND_MAX - 1; // just noticed that this is not recommended
+		arr[i] = dist(generator);
 	}
 	
 	auto start = high_resolution_clock::now();
@@ -26,7 +34,7 @@ int main(int argc, char *argv[]){
 	cout << "First element in output is " << output[0] << endl;
 	cout << "Last element in output is " << output[n-1] << endl;
 	
-	// some test functions
+//	// some test functions
 //	for (size_t i=0; i < n; i++) {
 //		cout << arr[i] << ' ';
 //	}
