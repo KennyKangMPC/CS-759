@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <random>
 
-#define NUM_THREADS 16 // another option is 16 based on the problem statement
+#define NUM_THREADS 512 // another option is 16 based on the problem statement
 
 // reference code is: https://github.com/DanNegrut/ME759/blob/main/2021Spring/Assignments/general/timing.md
 int main(int argc, char *argv[]) {
