@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <random>
 
-__global__ void randSumKernel(size_t *arr, int a) {
-	
+__global__ void randSumKernel(int *arr, int a) {
+	// threadIdx.x is x and blockIdx.x is y
+	arr[blockIdx.x * blockDim.x + threadIdx.x] = a * threadIdx.x + blockIdx.x;
 }
 	
 // reference is https://github.com/DanNegrut/ME759/blob/main/2021Spring/GPU/setArray.cu
@@ -23,12 +24,29 @@ int main(){
 	int a = dist(generator);
 	
 	// initialize device array dA
-	
-	
+	int *dA;
+	// allocate memory on the device; zero out all entries in this device array
+  	cudaMalloc((void **)&dA, sizeof(int) * numElement);
+  	cudaMemset(dA, 0, numElement * sizeof(int));
+  	
 	// initialize host array hA
 	int hA[numElement];
 	
+	// invoke GPU kernel with 2 blocks that has eight threads
+	randSumKernel<<<numBlocks, numThreads>>>(dA, a);
+	cudaDeviceSynchronize();
 	
+	// bring the result back from the GPU into the hostArray
+	cudaMemcpy(hA, dA, sizeof(int) * numElement, cudaMemcpyDeviceToHost);
+	
+	// free array
+	cudaFree(dA);
+	
+	// print out element
+  	for (int i = 0; i < numElement - 1; i++) {
+    	std::printf("%d ", hA[i]);
+  	}
+  	std::printf("%d\n", hA[numElement - 1]);
 	
 	return 0;
 }
