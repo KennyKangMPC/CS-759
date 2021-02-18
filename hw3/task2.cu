@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <random>
 
-__global__ void randSum(size_t *arr, int a) {
+__global__ void randSumKernel(size_t *arr, int a) {
 	
 }
 	
-
+// reference is https://github.com/DanNegrut/ME759/blob/main/2021Spring/GPU/setArray.cu
 int main(){
 	const int numBlocks = 2;
 	const int numThreads = 8;
