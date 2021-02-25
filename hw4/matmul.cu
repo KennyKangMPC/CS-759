@@ -16,6 +16,8 @@ __global__ void matmul_kernel(const float* A, const float* B, float* C, size_t n
 		for (size_t k = 0; k < n; k++) {
 			C[pos] += A[pos + k] * B[k * n + pos % n];
 		}
+	} else {
+		return;
 	}
 }
 

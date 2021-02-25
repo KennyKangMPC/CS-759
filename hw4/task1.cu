@@ -13,36 +13,32 @@ int main(int argc, char *argv[]) {
 	std::mt19937_64 generator(entropy_source()); 
 	const int min = -1.0, max = 1.0; // The range for the random number generator is -1.0 to 1.0
 	// there are tons of oter distributino that could be found from https://en.cppreference.com/w/cpp/header/random
-	std::uniform_real_distribution<float> dist(min, max);
-	
+	std::uniform_real_distribution<float> distA(min, max);
+	std::uniform_real_distribution<float> distB(min, max);
+
 	// allocate array
-	float *a, *b, *c;
+	float *ma, *mb, *mc;
 	// device array
-	cudaMallocManaged((void **)&a, n * n * sizeof(float));
-  	cudaMallocManaged((void **)&b, n * n * sizeof(float));
-  	cudaMallocManaged((void **)&c, n * n * sizeof(float));
+
+	cudaMallocManaged((void **)&ma, sizeof(float) * n * n);
+  	cudaMallocManaged((void **)&mb, sizeof(float) * n * n);
+  	cudaMallocManaged((void **)&mc, sizeof(float) * n * n);
 
 	// insert random initial value into it
 	for (size_t i = 0; i < n * n; i++) {
-		a[i] = dist(generator);
-		b[i] = dist(generator);
+		ma[i] = distA(generator);
+		mb[i] = distB(generator);
 	}
-	
-	// allocate device
-	int device = -1;
-	cudaGetDevice(&device);
-	cudaMemPrefetchAsync(a, sizeof(float) * n * n, device, NULL);
-  	cudaMemPrefetchAsync(b, sizeof(float) * n * n, device, NULL);
 	
 	// set up timer
   	cudaEvent_t start;
   	cudaEvent_t stop;
   	cudaEventCreate(&start);
   	cudaEventCreate(&stop);
-  	
+
   	// record time
   	cudaEventRecord(start);
-  	matmul(a, b, c, n, threads_per_block);
+  	matmul(ma, mb, mc, n, threads_per_block);
   	cudaEventRecord(stop);
   	cudaEventSynchronize(stop);
   	
@@ -51,10 +47,10 @@ int main(int argc, char *argv[]) {
 	cudaEventElapsedTime(&ms, start, stop);
 	
 	// print out the last element of c and the time
-  	printf("%f\n%f\n", c[n * n - 1], ms);
+  	printf("%f\n%f\n", mc[n * n - 1], ms);
   	
   	// clearn memory
-  	cudaFree(a);
-  	cudaFree(b);
-  	cudaFree(c); 	
+  	cudaFree(ma);
+  	cudaFree(mb);
+  	cudaFree(mc); 	
 }
