@@ -1,0 +1,19 @@
+&model
+xLen = 500
+yLen = 500
+dx = 5.0
+dy = 5.0
+dt = 0.001
+xDiffus = 750.0
+yDiffus = 750.0
+deterForce = -0.000000125
+dampCoeff = 96.0
+stochMag = 0.75
+relaxTrgt = 65.0
+dirBdyVal = 65.0
+xRef = 0.0
+yRef = 0.0
+initTime = 0.0
+finTime = 0.5
+outputFreq = 2
+/

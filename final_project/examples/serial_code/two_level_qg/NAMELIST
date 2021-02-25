@@ -1,0 +1,21 @@
+&model
+xLen = 256
+yLen = 256
+dx = 0.0078125
+dy = 0.0078125
+numTimesteps = 500
+initDt = 0.0005
+potVortBound = 150000.0
+deformWavenum = 4.0
+rotatWavenum = 1.58113883008
+vertShear = 0.2
+ekmanFricCoeff = 0.05
+biharmViscCoeff = 0.000000000000005
+biharmOrder = 4
+xRef = 0.0
+yRef = 0.0
+initTime= 0.0
+errorToler = 0.1
+outputFreq = 4
+/
+

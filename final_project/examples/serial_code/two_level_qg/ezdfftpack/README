@@ -1,0 +1,57 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                EZDFFTPACK V1.0                                
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A collection of wrappers by Jason L. Turner for DFFTPACK V1.0. DFFTPACK itself,
+created by Hugh C. Pumphrey, is a double precision clone of FFTPACK V4 by Paul
+N. Swarztrauber. DFFTPACK and FFTPACK are both available at
+
+    https://www.netlib.org/fftpack/
+
+This repository contains a complete copy of the FORTRAN sources of DFFTPACK, as
+well as
+
+(*) A Makefile which I have modified to work on some modern Linux and Windows
+machines using the compiler gfortran (updated from g77).
+
+(*) A file doc which was supplied with DFFTPACK and has been reformatted and
+altered to reflect the additional subroutines.
+
+(*) A file doc.ez which details the additional files I have added.
+
+The original FFTPACK and DFFTPACK were public domain, so EZDFFTPACK is also
+public domain. It is released in the hope that it will be useful, although
+there is no warranty of any sort covering this software.
+
+Below are the contents of this file included with DFFTPACK:
+
+                        DFFTPACK V1.0
+*****************************************************************
+        A Double precision clone by Hugh C. Pumphrey  of:
+                      FFTPACK
+               version 4  april 1985
+
+The gzipped tar file dp.tgz contains a complete copy of the FORTRAN
+sources of fftpack, with everything converted to double precision. If
+you do 
+
+gunzip dp.tgz
+tar xvf dfftpack.tar 
+
+You will get a directory called dfftpack with all the source code in
+it. There is also:
+
+(*) a Makefile which I have tweaked to work on modern Linux and Solaris
+systems. The comments in this file document the changes made.
+
+(*) a file doc which was supplied with fftpack and which has been 
+altered to reflect the changes made in the change to double precision.
+
+(*) A file doc.double which details the changes I made to the source code
+
+Please send any comments or bug reports to hcp@met.ed.ac.uk . Please
+also report if you get dfftpack to build successfully on any system
+other than Linux or Solaris. 
+
+The original FFTPACK was public domain, so dfftpack is public domain
+too. It is released in the hope it will be useful to someone. There is 
+no warranty of any sort covering this software.
