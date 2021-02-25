@@ -2,9 +2,10 @@
 
 // Reference from lecture 11 notess
 
-__global__ void stencil_kernel(const float* image, const float* mask, float* output, unsigned int n, unsigned int R) {
+__global__ void stencil_kernel(const float* image, const float* mask, float* output, unsigned int n, unsigned int R_) {
 	extern __shared__ float shMemArray[];
 	
+	int R = (int)R_;
 	int t_id = threadIdx.x;
 	int t_len = blockDim.x;
 	int i = blockIdx.x * t_len + t_id;

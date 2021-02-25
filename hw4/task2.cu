@@ -26,7 +26,6 @@ int main(int argc, char *argv[]) {
   	
   	for (size_t i = 0; i < n; i++) {
   		image[i] = dist(generator);
-  		output[i] = 0;
   	}
 	
 	for (size_t i = 0; i < mask_size; ++i) {
