@@ -1,0 +1,15 @@
+Reference: https://docs.nvidia.com/cuda/cublas/index.html#cublas-level-1-function-reference
+
+2.5 cuBLAS Level-1; 2.6 cuBLAS Level-2; 2.7 cuBLAS Level-3
+
+The Level 1 BLAS functions perform scalar, vector and vector-vector operations;
+
+The Level 2 BLAS functions perform matrix-vector operations;
+
+The Level 3 BLAS functions perform matrix-matrix operations.
+
+More details for the BLAS (Basic Linear ALgebra Subprograms) can be found from:
+http://www.netlib.org/blas/#_blas_routines
+
+
+
