@@ -1,6 +1,6 @@
 Reference: https://docs.nvidia.com/cuda/cublas/index.html#cublas-level-1-function-reference
 
-2.5 cuBLAS Level-1; 2.6 cuBLAS Level-2; 2.7 cuBLAS Level-3
+2.5 cuBLAS Level-1; 2.6 cuBLAS Level-2; 2.7 cuBLAS Level-3 (My answer)
 
 The Level 1 BLAS functions perform scalar, vector and vector-vector operations;
 
@@ -12,4 +12,13 @@ More details for the BLAS (Basic Linear ALgebra Subprograms) can be found from:
 http://www.netlib.org/blas/#_blas_routines
 
 
+A greater answer online: (Copy here directly only for reminding not for grading)
+https://stackoverflow.com/questions/1303182/how-does-blas-get-such-extreme-performance
 
+BLAS is divided into three levels:
+
+Level 1 defines a set of linear algebra functions that operate on vectors only. These functions benefit from vectorization (e.g. from using SSE).
+
+Level 2 functions are matrix-vector operations, e.g. some matrix-vector product. These functions could be implemented in terms of Level1 functions. However, you can boost the performance of this functions if you can provide a dedicated implementation that makes use of some multiprocessor architecture with shared memory.
+
+Level 3 functions are operations like the matrix-matrix product. Again you could implement them in terms of Level2 functions. But Level3 functions perform O(N^3) operations on O(N^2) data. So if your platform has a cache hierarchy then you can boost performance if you provide a dedicated implementation that is cache optimized/cache friendly. This is nicely described in the book. The main boost of Level3 functions comes from cache optimization. This boost significantly exceeds the second boost from parallelism and other hardware optimizations.
