@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 	// set up random number from -1 to 1 generator
 	std::random_device entropy_source;
 	std::mt19937_64 generator(entropy_source()); 
-	const int min = -1.0, max = 1.0; // The range for the random number generator is -1.0 to 1.0
+	const float min = -1.0, max = 1.0; // The range for the random number generator is -1.0 to 1.0
 	// there are tons of oter distributino that could be found from https://en.cppreference.com/w/cpp/header/random
 	std::uniform_real_distribution<float> distA(min, max);
 	std::uniform_real_distribution<float> distB(min, max);
