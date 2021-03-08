@@ -65,4 +65,5 @@ int main() {
 
     cudaFree(d_weights);
     cudaFree(d_in);
-    cudaF
+    cudaFree(d_out);
+}
