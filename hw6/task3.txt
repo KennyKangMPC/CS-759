@@ -1,0 +1,15 @@
+Answers for question (a) to (e)
+
+(a) Which code runs faster?
+
+(b) Which code uses more registers?
+
+(c) What is the maximum bandwidh reached by each code?
+
+(d) How does the occupancy of the two versions compare to each other?
+
+(e) What are the possible optimizations to improve the two solutions' performance?
+
+
+
+
