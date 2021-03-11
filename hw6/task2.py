@@ -20,14 +20,15 @@ with PdfPages("task2.pdf") as pdf:
     plt.plot(xticks, times, "-")
     for x, y in zip(xticks, times):
         plt.text(
-            x, y, f"{y:.1f}",
+            x, y, f"{y:.3f}",
             horizontalalignment='center',
         )
 
     plt.xlabel("n")
     plt.ylabel("Time (ms)")
     plt.xscale('log', basex=2)
-    plt.yscale('log', basey=10)
+    #plt.yscale('log', basey=10)
+    plt.title("Scaling Analysis Plot")
     plt.xticks(xticks)
 
     pdf.savefig()

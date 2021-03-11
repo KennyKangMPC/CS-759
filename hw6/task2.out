@@ -1,0 +1,44 @@
+Running with n = 2^10 = 1024, number_of_thread = 1024
+10.783382
+0.274688
+
+Running with n = 2^11 = 2048, number_of_thread = 1024
+-20.480820
+0.384224
+
+Running with n = 2^12 = 4096, number_of_thread = 1024
+-16.928457
+0.347648
+
+Running with n = 2^13 = 8192, number_of_thread = 1024
+-45.242611
+0.277024
+
+Running with n = 2^14 = 16384, number_of_thread = 1024
+-22.183044
+0.304832
+
+Running with n = 2^15 = 32768, number_of_thread = 1024
+-126.167191
+0.349248
+
+Running with n = 2^16 = 65536, number_of_thread = 1024
+-187.426636
+0.467424
+
+Running with n = 2^17 = 131072, number_of_thread = 1024
+141.014938
+0.560864
+
+Running with n = 2^18 = 262144, number_of_thread = 1024
+135.904343
+1.185504
+
+Running with n = 2^19 = 524288, number_of_thread = 1024
+441.812988
+1.853184
+
+Running with n = 2^20 = 1048576, number_of_thread = 1024
+-447.630371
+2.822944
+
