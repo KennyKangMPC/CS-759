@@ -1,35 +1,35 @@
 #include "scan.cuh"
 #include "stdio.h"
 
-__global__ void hs_scanl(float *g_odata. float *g_idata, int n){// another possible version
-	extern volatile __shared__  float temp[]; // allocated on invocation
-	int thid = threadIdx.x;
-	int thlen = blockDim.x;
-	int blid = blockIdx.x;
-	int id = thlen * blid + thid;
-    int pout = 0, pin = 1;
-    
-    if (id >= n) {
-    	return;
-    }
-    temp[thid] = g_idata[id]; // this is for inclusive scan. In lecture it is for exclusive
-    __syncthreads();
-    
-    for( int offset = 1; offset < thlen; offset *= 2 ) {
-        pout = 1 - pout; // swap double buffer indices
-        pin  = 1 - pout;
+//__global__ void hs_scanl(float *g_odata. float *g_idata, int n){// another possible version
+//	extern volatile __shared__  float temp[]; // allocated on invocation
+//	int thid = threadIdx.x;
+//	int thlen = blockDim.x;
+//	int blid = blockIdx.x;
+//	int id = thlen * blid + thid;
+//    int pout = 0, pin = 1;
+//    
+//    if (id >= n) {
+//    	return;
+//    }
+//    temp[thid] = g_idata[id]; // this is for inclusive scan. In lecture it is for exclusive
+//    __syncthreads();
+//    
+//    for( int offset = 1; offset < thlen; offset *= 2 ) {
+//        pout = 1 - pout; // swap double buffer indices
+//        pin  = 1 - pout;
 
-        if (thid >= offset)
-            temp[pout * thlen + thid] = temp[pin * thlen + thid] + temp[pin * thlen + thid - offset];
-        else
-            temp[pout * thlen + thid] = temp[pin * thlen + thid];
+//        if (thid >= offset)
+//            temp[pout * thlen + thid] = temp[pin * thlen + thid] + temp[pin * thlen + thid - offset];
+//        else
+//            temp[pout * thlen + thid] = temp[pin * thlen + thid];
 
-        __syncthreads(); // I need this here before I start next iteration
-    }
-    
-    if (pout *thlen + thid < thlen)
-        g_odata[id] = temp[pout * n + thid];
-}
+//        __syncthreads(); // I need this here before I start next iteration
+//    }
+//    
+//    if (pout *thlen + thid < thlen)
+//        g_odata[id] = temp[pout * n + thid];
+//}
 
 // here the code could also handle more blocks. In lecture note, only 1
 __global__ void hs_scan(float *g_od, float *g_id, float *g_bs, int n, int isNull) {
@@ -53,8 +53,7 @@ __global__ void hs_scan(float *g_od, float *g_id, float *g_bs, int n, int isNull
 			
         	__syncthreads(); // I need this here before I start next iteration 
    		}
-   		int t_id = pout * thlen + thid;
-   		if (pout *thlen + thid < thlen) {
+   		if (pout * thlen + thid < thlen) {
    			g_od[id] = temp[pout * n + thid];
    		}
    		
@@ -77,13 +76,13 @@ __global__ void inAdd(float *g_od, float *g_os, int n) {
 // "inclusive scan". Use lecture notes
 __host__ void scan(const float* input, float* output, unsigned int n, unsigned int threads_per_block) {
 	// allocate cuda memory
-	float *g_id, *g_od
+	float *g_id, *g_od;
 	cudaMalloc(&g_id, n * sizeof(float));
   	cudaMalloc(&g_od, n * sizeof(float));
   	
   	// allocate sum cuda memory for each iteration and overall sum
   	// this is needed due to various number of blocks
-  	float *g_is, *g_os, *g_em
+  	float *g_is, *g_os, *g_em;
   	// need to calculate number of block
 	int num_block = (n - 1 + threads_per_block) / threads_per_block;
 	cudaMalloc(&g_is, num_block * sizeof(float));
@@ -100,7 +99,7 @@ __host__ void scan(const float* input, float* output, unsigned int n, unsigned i
 	inAdd<<<num_block, threads_per_block>>>(g_od, g_os, n);
 	
 	// copy back from device to host to host
-	cudaMemcpy(output, g_od, n * sizeof(float), cudaMemcpyDeviceToHosts);
+	cudaMemcpy(output, g_od, n * sizeof(float), cudaMemcpyDeviceToHost);
 	cudaDeviceSynchronize();
 	
 	// free array

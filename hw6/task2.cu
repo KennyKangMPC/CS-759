@@ -37,6 +37,16 @@ int main(int argc, char *argv[]) {
   	// Get the elapsed time in milliseconds
 	float ms;
 	cudaEventElapsedTime(&ms, start, stop);
+	
+	// test
+//	for (int i = 0; i < n; i++) {
+//		printf("%f, ", input[i]);
+//	}
+//	printf("\n");
+//	for (int i = 0; i < n; i++) {
+//		printf("%f, ", output[i]);
+//	}
+//	printf("\n");
 	printf("%f\n%f\n", output[n - 1], ms);
 	
 	//free memory
