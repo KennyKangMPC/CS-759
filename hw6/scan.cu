@@ -100,7 +100,7 @@ __host__ void scan(const float* input, float* output, unsigned int n, unsigned i
 	inAdd<<<num_block, threads_per_block>>>(g_od, g_os, n);
 	
 	// copy back from device to host to host
-	cudaMemcpy(out, g_od, n * sizeof(float), cudaMemcpyDeviceToHosts);
+	cudaMemcpy(output, g_od, n * sizeof(float), cudaMemcpyDeviceToHosts);
 	cudaDeviceSynchronize();
 	
 	// free array
