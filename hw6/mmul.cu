@@ -1,4 +1,4 @@
-#include "mmul.h""
+#include "mmul.h"
 
 void mmul(cublasHandle_t handle, const float* A, const float* B, float* C, int n) {
 	

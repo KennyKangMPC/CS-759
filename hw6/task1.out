@@ -1,0 +1,33 @@
+Running with n = 2^5 = 32
+0.055296
+
+Running with n = 2^6 = 64
+0.058197
+
+Running with n = 2^7 = 128
+0.083456
+
+Running with n = 2^8 = 256
+0.127659
+
+Running with n = 2^9 = 512
+0.356523
+
+Running with n = 2^10 = 1024
+1.469440
+
+Running with n = 2^11 = 2048
+8.773120
+
+Running with n = 2^12 = 4096
+27.347073
+
+Running with n = 2^13 = 8192
+123.117798
+
+Running with n = 2^14 = 16384
+352.655273
+
+Running with n = 2^15 = 32768
+3381.064941
+
