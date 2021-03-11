@@ -1,35 +1,35 @@
 #include "scan.cuh"
 #include "stdio.h"
 
-//__global__ void hs_scanl(float *g_odata. float *g_idata, int n){// another possible version
-//	extern volatile __shared__  float temp[]; // allocated on invocation
-//	int thid = threadIdx.x;
-//	int thlen = blockDim.x;
-//	int blid = blockIdx.x;
-//	int id = thlen * blid + thid;
-//    int pout = 0, pin = 1;
-//    
-//    if (id >= n) {
-//    	return;
-//    }
-//    temp[thid] = g_idata[id]; // this is for inclusive scan. In lecture it is for exclusive
-//    __syncthreads();
-//    
-//    for( int offset = 1; offset < thlen; offset *= 2 ) {
-//        pout = 1 - pout; // swap double buffer indices
-//        pin  = 1 - pout;
+__global__ void hs_scanl(float *g_odata, float *g_idata, int n){// another possible version
+	extern volatile __shared__  float temp[]; // allocated on invocation
+	int thid = threadIdx.x;
+	int thlen = blockDim.x;
+	int blid = blockIdx.x;
+	int id = thlen * blid + thid;
+    int pout = 0, pin = 1;
+    
+    if (id >= n) {
+    	return;
+    }
+    temp[thid] = g_idata[id]; // this is for inclusive scan. In lecture it is for exclusive
+    __syncthreads();
+    
+    for( int offset = 1; offset < thlen; offset *= 2 ) {
+        pout = 1 - pout; // swap double buffer indices
+        pin  = 1 - pout;
 
-//        if (thid >= offset)
-//            temp[pout * thlen + thid] = temp[pin * thlen + thid] + temp[pin * thlen + thid - offset];
-//        else
-//            temp[pout * thlen + thid] = temp[pin * thlen + thid];
+        if (thid >= offset)
+            temp[pout * thlen + thid] = temp[pin * thlen + thid] + temp[pin * thlen + thid - offset];
+        else
+            temp[pout * thlen + thid] = temp[pin * thlen + thid];
 
-//        __syncthreads(); // I need this here before I start next iteration
-//    }
-//    
-//    if (pout *thlen + thid < thlen)
-//        g_odata[id] = temp[pout * n + thid];
-//}
+        __syncthreads(); // I need this here before I start next iteration
+    }
+    
+    if (pout *thlen + thid < thlen)
+        g_odata[id] = temp[pout * n + thid];
+}
 
 // here the code could also handle more blocks. In lecture note, only 1
 __global__ void hs_scan(float *g_od, float *g_id, float *g_bs, int n, int isNull) {
@@ -42,15 +42,16 @@ __global__ void hs_scan(float *g_od, float *g_id, float *g_bs, int n, int isNull
 	
 	if (id < n) {
 		temp[thid] = g_id[id];
-		for( int offset = 1; offset < n; offset *= 2 ) { // modified code from lecture notes
-        	pout = 1 - pout; // swap double buffer indices
-        	pin  = 1 - pout;
+		__syncthreads();
+		for( int offset = 1; offset < thlen; offset *= 2 ) { // modified code from lecture notes
+    		pout = 1 - pout; // swap double buffer indices
+       		pin  = 1 - pout;
         	
         	temp[pout * thlen + thid] = temp[pin * thlen + thid];
         	if (thid >= offset) {
         		temp[pout * thlen + thid] += temp[pin * thlen + thid - offset];
         	}
-			
+		
         	__syncthreads(); // I need this here before I start next iteration 
    		}
    		if (pout * thlen + thid < thlen) {
@@ -96,6 +97,9 @@ __host__ void scan(const float* input, float* output, unsigned int n, unsigned i
 	int size_shareM = 2 * threads_per_block * sizeof(float);
 	hs_scan<<<num_block, threads_per_block, size_shareM>>>(g_od, g_id, g_is, n, 0);
 	hs_scan<<<1, threads_per_block, size_shareM>>>(g_os, g_is, g_em, num_block, 1);
+
+//  hillis_steele<<<num_block, threads_per_block, size_shareM>>>(g_id, g_od, g_is, n);
+//	hillis_steele<<<1, threads_per_block, size_shareM>>>(g_os, g_is, nullptr, num_block);
 	inAdd<<<num_block, threads_per_block>>>(g_od, g_os, n);
 	
 	// copy back from device to host to host
