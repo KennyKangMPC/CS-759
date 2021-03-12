@@ -1,4 +1,0 @@
-Check out the link:
-Reference: https://docs.nvidia.com/cuda/cublas/index.html#cublas-level-1-function-reference
-
-http://www.netlib.org/blas/#_blas_routines
