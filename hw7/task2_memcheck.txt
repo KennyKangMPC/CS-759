@@ -1,0 +1,7 @@
+(base) kenny@kennykangMPC:~/Documents/CS-759/hw7$ cuda-memcheck ./task2 32
+========= CUDA-MEMCHECK
+499
+1
+35.2303
+========= ERROR SUMMARY: 0 errors
+
