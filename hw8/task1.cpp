@@ -32,6 +32,6 @@ int main(int argc, char *argv[]) {
 	double startTime = omp_get_wtime();
 	mmul(A, B, C, n);
 	double endTime = omp_get_wtime();
-	double dura = (endTime - startTime) * 1000;
-	printf("%d\n%d\n%d\n", C[0], C[n*n-1], dura);
+	double duration = (endTime - startTime) * 1000;
+	printf("%d\n%d\n%d\n", C[0], C[n*n-1], duration);
 }
