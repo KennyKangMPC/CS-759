@@ -57,7 +57,7 @@ int main(int argc, char *argv[]){
 	
 	float *output = (float*)malloc(n * n * sizeof(float));
 	
-	omp_set_num_threads(t);
+	omp_set_num_threads(t); // set number of threads
 	//timing for the convolution
   	auto start = high_resolution_clock::now();
   	convolve(image.pMatVal, output, n, mask.pMatVal, m);
