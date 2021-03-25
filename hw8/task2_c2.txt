@@ -1,0 +1,6 @@
+Task2, Problem C(2)
+
+Based on the plot, we can tell that the maximum time happens at t = 1 with value 19.1 ms, and the mimimum time cost
+happens at t = 17 with value 3.6 ms. Therefore the speed increases to about 6 times. However, 
+as we can see, from threads = 5, the run time does not show significant decrease anymore. I think
+this is because of the trade off of the data filled and you will also have more time in scheduling.

@@ -37,8 +37,7 @@ void msortRecursive(int *arr, const std::size_t n, const std::size_t threshold, 
 // the threshold, a serial sort algorithm will be used to avoid overhead
 // of task scheduling
 void msort(int* arr, const std::size_t n, const std::size_t threshold) {
-	int numThreads = omp_get_num_threads();
 #pragma omp parallel
 #pragma omp single
-	msortRecursive(arr, n, threshold, numThreads);
+	msortRecursive(arr, n, threshold, omp_get_num_threads());
 }

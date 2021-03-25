@@ -64,9 +64,9 @@ int main(int argc, char *argv[]){
   	auto end = high_resolution_clock::now();
 	
 	auto duration_sec = duration_cast<duration<double, std::milli>>(end - start);
-	cout << "First element in output is " << output[0] << endl;
-	cout << "Last element in output is " << output[n*n-1] << endl;
-	cout << "Time taken by scan function: " << duration_sec.count() << " milliseconds" << endl;
+	cout << output[0] << endl;
+  	cout << output[n * n - 1] << endl;
+  	cout << duration_sec.count() << endl;
 	//Done with the matrix then delete;
 	delete[] image.pMatVal;
 	delete[] mask.pMatVal;

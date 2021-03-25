@@ -12,6 +12,7 @@ num_lines_after = 1
 
 xticks = range(begin, end + 1)
 
+
 def read_times(filename):
     result = []
     with open(filename) as f:
@@ -34,7 +35,7 @@ with PdfPages(f"{name}.pdf") as pdf:
             fontsize=6,
         )
 
-    plt.title("Task2-numThreads vs Time")
+    plt.title("Plot of task3_t")
     plt.xlabel("t")
     plt.ylabel("Time (ms)")
     plt.xticks(xticks)

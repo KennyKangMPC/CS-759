@@ -4,13 +4,14 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 begin = 1
-end = 20
+end = 10
 name = Path(__file__).stem
 
 num_lines_before = 3
 num_lines_after = 1
 
-xticks = range(begin, end + 1)
+xticks = [2 ** x for x in range(begin, end + 1)]
+
 
 def read_times(filename):
     result = []
@@ -34,9 +35,11 @@ with PdfPages(f"{name}.pdf") as pdf:
             fontsize=6,
         )
 
-    plt.title("Task2-numThreads vs Time")
-    plt.xlabel("t")
+    plt.title("Plot of task3_ts")
+    plt.xlabel("ts")
     plt.ylabel("Time (ms)")
+    plt.xscale('log', basex=2)
     plt.xticks(xticks)
 
     pdf.savefig()
+

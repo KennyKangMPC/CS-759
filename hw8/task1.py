@@ -34,7 +34,7 @@ with PdfPages(f"{name}.pdf") as pdf:
             fontsize=6,
         )
 
-    plt.title(name)
+    plt.title("Time - #Threads")
     plt.xlabel("t")
     plt.ylabel("Time (ms)")
     plt.xticks(xticks)

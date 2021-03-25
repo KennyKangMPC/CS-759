@@ -32,6 +32,6 @@ int main(int argc, char *argv[]) {
   	double endTime= omp_get_wtime();
   	assert(std::is_sorted(arr, arr+n)); // To check if the sort is correct
   	double duration = (endTime - startTime) * 1000;
-	printf("%d\n%d\n%d\n", arr[0], arr[n-1], duration);
+	printf("%d\n%d\n%f\n", arr[0], arr[n-1], duration);
 }
 
