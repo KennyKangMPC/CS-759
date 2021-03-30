@@ -34,11 +34,17 @@ int main(int argc, char *argv[]) {
 		dists[i-1] = 0.0;
 	}
 	
+	auto T = 0.0;
+	int iteration = 10;
 	// start timing:
-	auto start = high_resolution_clock::now();
-  	cluster(n, t, arr, centers, dists);
-  	auto end = high_resolution_clock::now();
-  	auto duration_sec = duration_cast<duration<double, std::milli>>(end - start);
+	for (int itr = 0; itr < iteration; itr++) {
+		auto start = high_resolution_clock::now();
+  		cluster(n, t, arr, centers, dists);
+  		auto end = high_resolution_clock::now();
+  		auto duration_sec = duration_cast<duration<double, std::milli>>(end - start);
+  		T += duration_sec.count();
+	}
+	
   	
 	// looking for the largest elements in the array  	
   	float maxVal = -999.0
@@ -49,6 +55,6 @@ int main(int argc, char *argv[]) {
   			maxPos = i;
   		}
   	}
-  	printf("%f\n%d\n%f\n", maxVal, maxPos, duration_sec.count());
+  	printf("%f\n%d\n%f\n", maxVal, maxPos, T/iteration);
 }
 
