@@ -1,4 +1,3 @@
-#include <cassert>
 #include <chrono>
 #include <cstring>
 #include <random>
