@@ -7,7 +7,6 @@
 #include "montecarlo.h"
 
 using namespace std;
-using namespace chrono;
 
 int main(int argc, char *argv[]) {
     int n = atol(argv[1]);
