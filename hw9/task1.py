@@ -30,12 +30,12 @@ with PdfPages(f"{name}.pdf") as pdf:
     plt.plot(xticks, time, "-")
     for x, y in zip(xticks, time):
         plt.text(
-            x, y, f"{y:.4f}",
+            x, y, f"{y:.3f}",
             horizontalalignment='center',
             fontsize=6,
         )
 
-    plt.title(name)
+    plt.title("Task1 Function vs t")
     plt.xlabel("t")
     plt.ylabel("Time (ms)")
     plt.xticks(xticks)
