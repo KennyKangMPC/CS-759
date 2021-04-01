@@ -8,15 +8,14 @@
 
 using namespace std;
 using std::sort;
-using std::chrono::duration;
-using std::chrono::high_resolution_clock;
+using namespace std::chrono;
 
 int main(int argc, char *argv[]) {
 	MPI_Init(&argc, &argv);
 	
 	int n = atol(argv[1]);
-	float sendBuff = new float[n];
-	float recevBuff = new float[n];
+	float* sendBuff = new float[n];
+	float* recevBuff = new float[n];
 	
 	random_device entropy_source;
 	mt19937_64 generator(entropy_source()); 

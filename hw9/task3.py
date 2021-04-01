@@ -37,7 +37,7 @@ with PdfPages(f"{name}.pdf") as pdf:
             fontsize=6,
         )
 
-    plt.title(name)
+    plt.title("Task 3 Time taken by Communications")
     plt.xlabel(xlabel)
     plt.ylabel("Time (ms)")
     plt.xscale('log', basex=2)

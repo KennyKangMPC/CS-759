@@ -1,0 +1,75 @@
+Running with n = 2^1 = 2
+0.121642
+
+Running with n = 2^2 = 4
+0.062574
+
+Running with n = 2^3 = 8
+0.057943
+
+Running with n = 2^4 = 16
+0.109751
+
+Running with n = 2^5 = 32
+0.056539
+
+Running with n = 2^6 = 64
+0.059366
+
+Running with n = 2^7 = 128
+0.069424
+
+Running with n = 2^8 = 256
+0.109454
+
+Running with n = 2^9 = 512
+0.103185
+
+Running with n = 2^10 = 1024
+0.105896
+
+Running with n = 2^11 = 2048
+0.272496
+
+Running with n = 2^12 = 4096
+0.104554
+
+Running with n = 2^13 = 8192
+0.114350
+
+Running with n = 2^14 = 16384
+0.132276
+
+Running with n = 2^15 = 32768
+0.211376
+
+Running with n = 2^16 = 65536
+0.224156
+
+Running with n = 2^17 = 131072
+0.359889
+
+Running with n = 2^18 = 262144
+0.542939
+
+Running with n = 2^19 = 524288
+1.016370
+
+Running with n = 2^20 = 1048576
+2.729513
+
+Running with n = 2^21 = 2097152
+7.149714
+
+Running with n = 2^22 = 4194304
+17.357056
+
+Running with n = 2^23 = 8388608
+34.713874
+
+Running with n = 2^24 = 16777216
+69.859649
+
+Running with n = 2^25 = 33554432
+138.113339
+
