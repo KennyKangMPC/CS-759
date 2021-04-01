@@ -3,6 +3,7 @@
 #include "cluster.h"
 
 // the answer I found based on lecture 23 notes page 34.
+
 void cluster(const size_t n, const size_t t, const float *arr,
              const float *centers, float *dists) {
 #pragma omp parallel num_threads(t)
