@@ -11,8 +11,8 @@ num_lines_before = 2
 num_lines_after = 1
 
 filename_dict = {
-    'w/simd': "task2_w_simd.out",
-    'wo/simd': "task2_wo_simd.out",
+    'with simd': "task2_w_simd.out",
+    'without simd': "task2_wo_simd.out",
 }
 
 xticks = range(begin, end + 1)
@@ -35,7 +35,7 @@ def read_and_plot(key):
     plt.plot(xticks, time, "-", label=key)
     for x, y in zip(xticks, time):
         plt.text(
-            x, y, f"{y:.3f}",
+            x, y, f"{y:.4f}",
             horizontalalignment='center',
             fontsize=6,
         )
@@ -45,7 +45,7 @@ with PdfPages(f"{name}.pdf") as pdf:
     for key in filename_dict:
         read_and_plot(key)
 
-    plt.title(name)
+    plt.title("With Simd vs Without Simd")
     plt.xlabel("t")
     plt.ylabel("Time (ms)")
     plt.xticks(xticks)

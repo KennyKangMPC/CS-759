@@ -11,13 +11,13 @@ using namespace std;
 int main(int argc, char *argv[]) {
     int n = atol(argv[1]);
     int t = atol(argv[2]);
+    float r = 1.0;
     
     random_device entropy_source;
 	mt19937_64 generator(entropy_source()); 
 	const float min = -r, max = r; // The range for the random number 		generator is 0.0 to n
 	uniform_real_distribution<float> dist(min, max);
     
-    float r = 1.0;
     float *x = new float[n];
     float *y = new float[n];
     
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     }
     
     // start timing
-    auto pi_estimate;
+    double pi_estimate;
     double time = 0.0;
     int iteration = 10;
     for (int itr = 0; itr < iteration; itr++) {
