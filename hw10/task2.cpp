@@ -24,12 +24,27 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < n; i++) {
     	arr[i] = dist(generator)
     }
+    
+    omp_set_num_threads(t);
+    
     float global_res = 0;
-    
     int rank;
+    
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Barrier(MPI_COMM_WORLD);
+    int rank2
+    MPI_Barrier(MPI_COMM_WORLD, &rank2);
     
+    // start timing
+    auto start = high_resolution_clock::now();
+    float result = reduce(arr, 0, n);
+    MPI_Reduce(&result, &global_res, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
+    auto end = high_resolution_clock::now();
+    double ms = duration_cast<duration<double, std::milli>>(end - start).count();
     
+    if (rank == 0) {
+    	printf("%f\n%f\n", global_res, ms);
+    }
+    
+    MPI_Finalize();
 }
 
