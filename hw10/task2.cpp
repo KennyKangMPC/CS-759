@@ -31,9 +31,8 @@ int main(int argc, char *argv[]) {
     int rank;
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    int rank2
-    MPI_Barrier(MPI_COMM_WORLD, &rank2);
     
+    MPI_Barrier(MPI_COMM_WORLD);
     // start timing
     auto start = high_resolution_clock::now();
     float result = reduce(arr, 0, n);
