@@ -1,0 +1,1 @@
+Based on my plot, I found when t = 8, the code is fastest. Based on the plot for task2(d) question 2, we can tell that as N getting larger, the one compiled in hybird way is better. Therefore, when size is small, pure openmp is better. Whereas when size is large, hybird method is better.
