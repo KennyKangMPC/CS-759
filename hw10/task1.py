@@ -7,7 +7,7 @@ end = 10
 num_lines_before = 1
 num_lines_after = 0
 
-xticks = ["optimize1", "optimize2", "optimize3", "optimize4", "optimize5", "optimize6"]
+xticks = ["optimize1", "optimize2", "optimize3", "optimize4", "optimize5", "opt1-SIMD"]
 
 
 def read_times(filename):
@@ -25,7 +25,7 @@ def read_times(filename):
 for name in ["task11", "task12", "task13", "task14"]:
     with PdfPages(f"{name}.pdf") as pdf:
         time = read_times(f"{name}.out")
-        plt.bar(xticks, time)
+        plt.plot(xticks, time, "-")
         for x, y in zip(xticks, time):
             plt.text(
                 x, y, f"{y:.4f}",
