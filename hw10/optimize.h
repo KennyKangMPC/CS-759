@@ -14,10 +14,19 @@
 // in order to compile. When we grade, this file will still
 // be overwritten by a clean copy.
 
+#ifndef OP
 #define OP +
-#define IDENT 0
+#endif
 
-typedef int data_t;
+#ifndef IDENT
+#define IDENT 0
+#endif
+
+#ifndef DATA_T
+#define DATA_T int
+#endif
+
+typedef DATA_T data_t;
 
 typedef struct vec{
     size_t len;

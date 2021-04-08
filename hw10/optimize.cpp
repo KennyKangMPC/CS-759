@@ -40,6 +40,7 @@ void optimize2(vec *v, data_t *dest) {
 void optimize3(vec *v, data_t *dest) {
 	int length = vec_length(v);
 	int limit = length - 1;
+	data_t *d = get_vec_start(v);
 	data_t x = IDENT;
 	int i;
   	/* Combine 2 elements at a time */
