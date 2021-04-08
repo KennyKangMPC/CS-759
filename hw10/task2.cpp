@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <mpi.h>
 
+#include "reduce.h"
+
 using namespace std;
 using namespace std::chrono;
 
@@ -13,7 +15,7 @@ int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     int n = atol(argv[1]);
     int t = atol(argv[2]);
-    
+    omp_set_num_threads(t);
     // random generator
     random_device entropy_source;
 	mt19937_64 generator(entropy_source()); 
@@ -22,16 +24,14 @@ int main(int argc, char *argv[]) {
     
     float *arr = new float[n];
     for (int i = 0; i < n; i++) {
-    	arr[i] = dist(generator)
+    	arr[i] = dist(generator);
     }
-    
-    omp_set_num_threads(t);
     
     float global_res = 0;
     int rank;
     
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    
+    reduce(arr, 0, n);
     MPI_Barrier(MPI_COMM_WORLD);
     // start timing
     auto start = high_resolution_clock::now();
@@ -46,4 +46,3 @@ int main(int argc, char *argv[]) {
     
     MPI_Finalize();
 }
-
