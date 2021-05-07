@@ -1,0 +1,17 @@
+command for using pictures to generate videos
+
+ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4
+
+where the %04d means that zeros will be padded until the length of the string is 4 i.e 0001…0020…0030…2000 and so on. If no padding is needed use something similar to pic%d.png or %d.png.
+
+-r is the framerate (fps)
+-crf is the quality, lower means better quality, 15-25 is usually good
+-s is the resolution
+-pix_fmt yuv420p specifies the pixel format, change this as needed
+
+
+Specifying start and end frames
+ffmpeg -r 60 -f image2 -s 1920x1080 -start_number 1 -i pic%04d.png -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4
+
+-start_number specifies what image to start at
+-vframes 1000 specifies the number frames/images in the video
